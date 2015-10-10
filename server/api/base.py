@@ -1,0 +1,61 @@
+__author__ = 'johnson'
+
+import json
+import functools
+from flask import request, jsonify
+import module.user as module_user
+from module.errors import *
+
+RESPONSE_CODE_SUCCESS = 200
+RESPONSE_CODE_FAIL = 400
+
+
+def _build_deco_chain(decoding_func, decoded_func, decoding_obj):
+    if not hasattr(decoded_func, '_real_func'):
+        decoded_func._real_func = decoded_func
+    _real_func = decoded_func._real_func
+    decoding_func._real_func = _real_func
+    setattr(_real_func, '_decorators', getattr(_real_func, '_decorators', []) + [decoding_obj])
+
+
+def handle_mobile_request(func, *args, **kwargs):
+    kwargs = kwargs.copy()
+    if request.args:
+        kwargs.update(request.args.to_dict())
+    if request.data:
+        data = json.loads(request.data)
+        kwargs.update(data)
+    if request.form:
+        kwargs.update(request.form.to_dict())
+    if request.files:
+        kwargs.update({k: request.files.getlist(k) for k in request.files})
+    if request.headers.get('Authorization'):
+        try:
+            ut = request.headers.get('Authorization')
+            valid, user_id = module_user.is_token_valid(ut)
+            user = module_user.get_user_by_id(user_id) if user_id else None
+            if not user:
+                raise UserNotFoundException()
+        except:
+            raise UserNotFoundException()
+    if hasattr(func, '_real_func') and getattr(func._real_func, '_login_required', False) and 'user_id' not in kwargs:
+        raise NeedLoginException()
+    return func(*args, **kwargs)
+
+
+def mobile_request(func):
+    @functools.wraps(func)
+    def wrapped(*args, **kwargs):
+        resp = {'rc': RESPONSE_CODE_SUCCESS, 'content': ''}
+        try:
+            data = handle_mobile_request(func, *args, **kwargs)
+            if isinstance(data, dict) or isinstance(data, str):
+                resp['content'] = data
+            else:
+                raise UnknownControllerReturnType()
+        except Exception as e:
+            resp['rc'] = RESPONSE_CODE_FAIL
+            resp['content'] = type(e).__name__ + ' ' + e.message
+        return jsonify(resp)
+    _build_deco_chain(wrapped, func, mobile_request)
+    return wrapped
