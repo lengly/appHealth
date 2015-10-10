@@ -1,10 +1,9 @@
-__author__ = 'johnson'
-
 import json
 import functools
 from flask import request, jsonify
 import module.user as module_user
 from module.errors import *
+__author__ = 'johnson'
 
 RESPONSE_CODE_SUCCESS = 200
 RESPONSE_CODE_FAIL = 400
@@ -36,6 +35,7 @@ def handle_mobile_request(func, *args, **kwargs):
             user = module_user.get_user_by_id(user_id) if user_id else None
             if not user:
                 raise UserNotFoundException()
+            kwargs['user_id'] = user_id
         except:
             raise UserNotFoundException()
     if hasattr(func, '_real_func') and getattr(func._real_func, '_login_required', False) and 'user_id' not in kwargs:
@@ -49,7 +49,7 @@ def mobile_request(func):
         resp = {'rc': RESPONSE_CODE_SUCCESS, 'content': ''}
         try:
             data = handle_mobile_request(func, *args, **kwargs)
-            if isinstance(data, dict) or isinstance(data, str):
+            if isinstance(data, dict) or isinstance(data, (str, unicode)):
                 resp['content'] = data
             else:
                 raise UnknownControllerReturnType()
@@ -58,4 +58,13 @@ def mobile_request(func):
             resp['content'] = type(e).__name__ + ' ' + e.message
         return jsonify(resp)
     _build_deco_chain(wrapped, func, mobile_request)
+    return wrapped
+
+
+def require_login(func):
+    @functools.wraps(func)
+    def wrapped(*args, **kwargs):
+        return func(*args, **kwargs)
+    _build_deco_chain(wrapped, func, require_login)
+    wrapped._real_func._login_required = True
     return wrapped

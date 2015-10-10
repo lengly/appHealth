@@ -11,3 +11,11 @@ class NeedLoginException(Exception):
 
 class UnknownControllerReturnType(Exception):
     pass
+
+
+class UserAlreadyExistsException(Exception):
+    pass
+
+
+class LoginFailedException(Exception):
+    pass

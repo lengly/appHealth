@@ -1,6 +1,5 @@
-__author__ = 'johnson'
-
 from flask import Blueprint
+__author__ = 'johnson'
 
 ping_api = Blueprint('ping', __name__)
 
