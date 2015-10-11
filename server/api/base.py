@@ -51,6 +51,8 @@ def mobile_request(func):
             data = handle_mobile_request(func, *args, **kwargs)
             if isinstance(data, dict) or isinstance(data, (str, unicode)):
                 resp['content'] = data
+            if isinstance(data, (int, long, float, bool)):
+                resp['content'] = str(data)
             else:
                 raise UnknownControllerReturnType()
         except Exception as e:
