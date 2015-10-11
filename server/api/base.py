@@ -1,6 +1,7 @@
 import json
 import functools
 from flask import request, jsonify
+from flask.wrappers import Response
 import module.user as module_user
 from module.errors import *
 __author__ = 'johnson'
@@ -49,12 +50,14 @@ def mobile_request(func):
         resp = {'rc': RESPONSE_CODE_SUCCESS, 'content': ''}
         try:
             data = handle_mobile_request(func, *args, **kwargs)
-            if isinstance(data, dict) or isinstance(data, (str, unicode)):
+            if isinstance(data, Response):
+                return data
+            elif isinstance(data, dict) or isinstance(data, (str, unicode)):
                 resp['content'] = data
-            if isinstance(data, (int, long, float, bool)):
+            elif isinstance(data, (int, long, float, bool)):
                 resp['content'] = str(data)
             else:
-                raise UnknownControllerReturnType()
+                raise UnknownControllerReturnType(str(type(data)))
         except Exception as e:
             resp['rc'] = RESPONSE_CODE_FAIL
             resp['content'] = type(e).__name__ + ' ' + e.message
