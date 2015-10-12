@@ -10,3 +10,4 @@ class Moment(ndb.Model):
     time_created = ndb.DateTimeProperty()
     time_modified = ndb.DateTimeProperty()
     time_removed = ndb.DateTimeProperty()
+    comments = ndb.KeyProperty(repeated=True)
