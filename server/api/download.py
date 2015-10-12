@@ -8,8 +8,8 @@ download_api = Blueprint('download', __name__)
 
 @download_api.route('/download')
 @mobile_request
-def download(blob_key):
-    blob_info = blobstore.get(blob_key)
+def download(blob_id):
+    blob_info = blobstore.get(blob_id)
     blob_reader = blobstore.BlobReader(blob_info)
     value = blob_reader.read()
     response = make_response(value)

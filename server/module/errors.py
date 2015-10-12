@@ -19,3 +19,15 @@ class UserAlreadyExistsException(Exception):
 
 class LoginFailedException(Exception):
     pass
+
+
+class UnauthorizedOperationException(Exception):
+    pass
+
+
+class NoContentException(Exception):
+    pass
+
+
+class MomentNotFoundException(Exception):
+    pass

@@ -24,6 +24,9 @@ def handle_mobile_request(func, *args, **kwargs):
         kwargs.update(request.args.to_dict())
     if request.data:
         data = json.loads(request.data)
+        # to support escape character in json value
+        data = {k: (lambda x: x.replace('\\n', '\n'))(v) for k, v in data.items()}
+        print data['text']
         kwargs.update(data)
     if request.form:
         kwargs.update(request.form.to_dict())

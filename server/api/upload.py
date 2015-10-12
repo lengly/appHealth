@@ -17,7 +17,7 @@ def get_url(user_id):
 
 @upload_api.route(UPLOAD_IMAGE_URL, methods=['POST'])
 @mobile_request
-def upload_image(pic_file):
+def upload_image(pic_file, user_id=None):
     if isinstance(pic_file, list):
         pic_file = pic_file[0]
     headers = pic_file.headers
