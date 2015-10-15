@@ -44,6 +44,7 @@ def handle_mobile_request(func, *args, **kwargs):
             raise UserNotFoundException()
     if hasattr(func, '_real_func') and getattr(func._real_func, '_login_required', False) and 'user_id' not in kwargs:
         raise NeedLoginException()
+    print request, kwargs
     return func(*args, **kwargs)
 
 
