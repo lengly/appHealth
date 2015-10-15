@@ -7,20 +7,48 @@
 //
 
 import UIKit
+import SwiftHTTP
+import SwiftyJSON
 
 class loginViewController: UIViewController {
 
+    // MARK: Properties
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    // MARK: Actions
+    @IBAction func login(sender: UIButton) {
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+        
+        // 向服务器发送登陆信息
+        let params = ["email": email, "password": password]
+        do {
+            let opt = try HTTP.POST("http://isports-1093.appspot.com/sign_in", parameters: params)
+            opt.start { response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                    return //also notify app of failure as needed
+                }
+//                print("opt finished: \(response.description)")
+                //注意 response.text! 是一个string 这里展示了如何讲获取到的string转化为json
+                print("text is: \(response.text!)") //show json
+                var json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
+                print(json["content"]["token"])
+                print(json["content"]["user_id"])
+                print(json["rc"])
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+
+    }
 
     
     // MARK: - Navigation
