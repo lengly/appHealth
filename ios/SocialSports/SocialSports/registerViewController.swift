@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftHTTP
 
 class registerViewController: UIViewController {
     
@@ -27,7 +28,7 @@ class registerViewController: UIViewController {
         let password = passwordTextField.text
         let repeatPassword = repeatPasswordTextField.text
         
-        // 验证重复输入的密码是否一致  弱不一致则弹出警告
+        // 验证重复输入的密码是否一致  若不一致则弹出警告
         if password != repeatPassword {
             let alertController = UIAlertController(title: "错误", message: "密码不一致", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "好的", style: UIAlertActionStyle.Default, handler: nil)
@@ -37,6 +38,26 @@ class registerViewController: UIViewController {
         }
         
         // 向服务器发送注册信息
+//        var request = HTTPTask()
+//        request.requestSerializer = JSONRequestSerializer() //will send the params as a JSON body.
+//        request.responseSerializer = JSONResponseSerializer()
+//        let params: Dictionary<String,AnyObject> = ["param": "param1", "array": ["first array element","second","third"], "num": 23, "dict": ["someKey": "someVal"]]
+
+        
+        let data = ["email": email, "name": email, "password": password]
+        do {
+            let opt = try HTTP.POST("http://isports-1093.appspot.com/sign_up", parameters: data)
+            opt.start { response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                    return //also notify app of failure as needed
+                }
+                print("opt finished: \(response.description)")
+                print("data is: \(response.data)") //access the response of the data with response.data
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
         
     }
     
