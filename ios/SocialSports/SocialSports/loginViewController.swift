@@ -16,6 +16,8 @@ class loginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var token: Token?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,12 +39,34 @@ class loginViewController: UIViewController {
                     return //also notify app of failure as needed
                 }
 //                print("opt finished: \(response.description)")
-                //注意 response.text! 是一个string 这里展示了如何讲获取到的string转化为json
-                print("text is: \(response.text!)") //show json
+//                注意 response.text! 是一个string 这里展示了如何讲获取到的string转化为json
+//                print("text is: \(response.text!)") //show json
+//                可以通过以下方式直接调用json
+//                print(json["content"]["token"])
+//                print(json["content"]["user_id"])
+//                print(json["rc"])
+                
                 var json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
-                print(json["content"]["token"])
-                print(json["content"]["user_id"])
-                print(json["rc"])
+                if json["rc"] == 200 {
+                    //一切正常
+                    self.token = Token(token: json["content"]["token"].stringValue)
+                    self.saveToken()
+                    print("Success")
+                    //登陆成功  跳转到首页
+                    // MARK: TODO 跳转后去掉返回登陆的按钮
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let myStoryBoard = self.storyboard//UIStoryboard(name:"welcome", bundle: nil)
+                        let vc = myStoryBoard!.instantiateViewControllerWithIdentifier("index") as! UITabBarController
+                        //self.presentViewController(vc, animated: true, completion: nil)
+                        self.showViewController(vc, sender: self)
+                    }
+                }
+                else {
+                    // MARK: TODO 提示错误信息给用户
+                    //有错误
+                    print(json["content"].stringValue)
+                }
+                
             }
         } catch let error {
             print("got an error creating the request: \(error)")
@@ -62,5 +86,16 @@ class loginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     
+    // MARK: NSCoding
+    func saveToken() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(token!, toFile: Token.ArchiveURL.path!)
+        if !isSuccessfulSave {
+            print("Failed to save meals...")
+        }
+    }
+
+    func loadMeals() -> Token? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Token.ArchiveURL.path!) as? Token
+    }
 
 }

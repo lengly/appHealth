@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftHTTP
+import SwiftyJSON
 
 class registerViewController: UIViewController {
     
@@ -47,7 +48,20 @@ class registerViewController: UIViewController {
                     return //also notify app of failure as needed
                 }
                 print("opt finished: \(response.description)")
-                print("data is: \(response.data)") //access the response of the data with response.data
+//                print("data is: \(response.data)") //access the response of the data with response.data
+                let json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
+                
+                
+                // MARK: TODO
+                // 这里检测成功或者失败应该给用户一个提示
+                if json["rc"] == 200 {
+                    //注册成功
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                else {
+                    //注册失败
+                    print(json["content"].stringValue)
+                }
             }
         } catch let error {
             print("got an error creating the request: \(error)")
