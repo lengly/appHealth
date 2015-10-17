@@ -52,7 +52,7 @@ def create_moment(user_id, text=None, pic_id=None, source_id=None):
         source_moment = Moment.get_by_id(source_id)
         moment.populate(source_key=(source_moment.source_key if source_moment.source_key else source_moment.key))
     else:
-        moment.populate(text=text, pic=blobstore.get(pic_id).key())
+        moment.populate(text=text, pic=blobstore.get(pic_id).key() if pic_id else None)
     moment.put()
     return {
         'moment_id': moment.key.id(),
