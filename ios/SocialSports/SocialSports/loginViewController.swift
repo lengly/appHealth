@@ -52,6 +52,7 @@ class loginViewController: UIViewController {
                     self.token = Token(token: json["content"]["token"].stringValue)
                     self.saveToken()
                     print("Success")
+                   // print(json["content"]["user_id"])
                     //登陆成功  跳转到首页
                     // MARK: TODO 跳转后去掉返回登陆的按钮
                     dispatch_async(dispatch_get_main_queue()) {
