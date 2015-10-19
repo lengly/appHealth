@@ -66,6 +66,31 @@ class mainpageViewController: UIViewController {
         }catch let error{
              print("couldn't get user profile: \(error)")
         }
+        
+        do{
+            //TODO:NTC时间
+            var date = NSDate()
+            var formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            var dateString = formatter.stringFromDate(date)
+            print(dateString)
+            
+            let optmoments = try HTTP.POST("http://isports-1093.appspot.com//moment/all", parameters:["time_stamp":dateString],headers: ["Authorization": token])
+            optmoments.start { response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                    return //also notify app of failure as needed
+                }
+                //响应的内容
+                let json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
+                //print((json))
+                //print(json["content"])
+                let content = json["content"]
+                print(content)
+            }
+        }catch let error{
+            print("couldn't get user profile: \(error)")
+        }
     }
     
     func loadMeals() -> Token? {

@@ -64,11 +64,14 @@ class publishViewController: UIViewController {
                 let json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
                 print(json["content"])
                 let content = json["content"]
+                if content["moment_id"] != nil {
+                    print("发布状态成功")
+                }
             }
         }catch let error{
             print("couldn't get user profile: \(error)")
         }
-        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func loadMeals() -> Token? {
