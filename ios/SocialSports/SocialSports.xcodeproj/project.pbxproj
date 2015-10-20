@@ -18,6 +18,8 @@
 		33DFE8A81BD12593006F6C22 /* profileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DFE8A71BD12593006F6C22 /* profileViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		33DFE8AE1BD146CF006F6C22 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DFE8AD1BD146CF006F6C22 /* Token.swift */; settings = {ASSET_TAGS = (); }; };
 		55B61528A35E3A111417BA76 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEDE9EC241C3DBDD75D410D /* Pods.framework */; };
+		FB4543EE1BD26619007BCF33 /* mainpageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4543ED1BD26619007BCF33 /* mainpageViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		FB4543F41BD28802007BCF33 /* publishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4543F31BD28802007BCF33 /* publishViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		5AEDE9EC241C3DBDD75D410D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFC1CA79F5E94080441F729 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F57BD6E38DF21413C7EA5AAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		FB4543ED1BD26619007BCF33 /* mainpageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainpageViewController.swift; sourceTree = "<group>"; };
+		FB4543F31BD28802007BCF33 /* publishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = publishViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,9 +96,11 @@
 		33D717611BCD6EAE00B85D2A /* SocialSports */ = {
 			isa = PBXGroup;
 			children = (
+				FB4543F31BD28802007BCF33 /* publishViewController.swift */,
 				33D717621BCD6EAE00B85D2A /* AppDelegate.swift */,
 				33D717641BCD6EAE00B85D2A /* ViewController.swift */,
 				33D717661BCD6EAE00B85D2A /* Main.storyboard */,
+				FB4543ED1BD26619007BCF33 /* mainpageViewController.swift */,
 				33DFE8A71BD12593006F6C22 /* profileViewController.swift */,
 				33D717691BCD6EAE00B85D2A /* Assets.xcassets */,
 				33D7176B1BCD6EAE00B85D2A /* LaunchScreen.storyboard */,
@@ -285,7 +291,9 @@
 			files = (
 				33D717651BCD6EAE00B85D2A /* ViewController.swift in Sources */,
 				33D717631BCD6EAE00B85D2A /* AppDelegate.swift in Sources */,
+				FB4543EE1BD26619007BCF33 /* mainpageViewController.swift in Sources */,
 				33C5244E1BCEB41700AD5DE7 /* loginViewController.swift in Sources */,
+				FB4543F41BD28802007BCF33 /* publishViewController.swift in Sources */,
 				33DFE8AE1BD146CF006F6C22 /* Token.swift in Sources */,
 				33DFE8A81BD12593006F6C22 /* profileViewController.swift in Sources */,
 				33C524501BCEB45400AD5DE7 /* registerViewController.swift in Sources */,
