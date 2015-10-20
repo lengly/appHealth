@@ -39,6 +39,7 @@ class mainpageViewController: UIViewController {
 
     //获取用户信息，设置Authorization字段为token值
     func getProfile(){
+        
         let tokenObj = self.loadMeals()
         //print(token!.token)
         let token = tokenObj!.token;
@@ -69,13 +70,14 @@ class mainpageViewController: UIViewController {
         
         do{
             //TODO:NTC时间
-            var date = NSDate()
-            var formatter = NSDateFormatter()
+            
+            let date = NSDate()
+            let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            var dateString = formatter.stringFromDate(date)
+            let dateString = formatter.stringFromDate(date)
             print(dateString)
             
-            let optmoments = try HTTP.POST("http://isports-1093.appspot.com//moment/all", parameters:["time_stamp":dateString],headers: ["Authorization": token])
+            let optmoments = try HTTP.POST("http://isports-1093.appspot.com/moment/my", parameters:["time_stamp":dateString],headers: ["Authorization": token])
             optmoments.start { response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
@@ -83,7 +85,8 @@ class mainpageViewController: UIViewController {
                 }
                 //响应的内容
                 let json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
-                //print((json))
+                
+                print((json))
                 //print(json["content"])
                 let content = json["content"]
                 print(content)

@@ -105,13 +105,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G9P-2i-cV0" userLabel="Moment Text View">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="请输入状态" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G9P-2i-cV0" userLabel="Moment Text View">
                                 <rect key="frame" x="20" y="72" width="560" height="225"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="G9P-2i-cV0" secondAttribute="height" multiplier="112:45" id="5aW-3J-Wxd"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -147,6 +146,12 @@
         <!--我的-->
         <scene sceneID="Ilj-E8-0h2">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nhS-6y-whB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="XHe-Ih-7J9">
+                    <connections>
+                        <action selector="selectImageFromPhotoLibrary:" destination="zjT-2A-eQl" id="FAx-9m-bOV"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <viewController title="我的" id="zjT-2A-eQl" customClass="profileViewController" customModule="SocialSports" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DpA-fN-9FT"/>
@@ -302,7 +307,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="个人设置" id="Iwk-AU-EiV">
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="Vst-xf-1DS"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Vst-xf-1DS">
+                            <connections>
+                                <action selector="saveProfile:" destination="zjT-2A-eQl" id="VOh-GJ-Isv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="birthdayTextField" destination="lFz-Jy-wAL" id="FeH-TA-OUW"/>
@@ -312,12 +321,6 @@
                         <outlet property="passwordTextField" destination="L5v-xy-uRU" id="HaL-qq-boG"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nhS-6y-whB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="XHe-Ih-7J9">
-                    <connections>
-                        <action selector="selectImageFromPhotoLibrary:" destination="zjT-2A-eQl" id="FAx-9m-bOV"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3864" y="1094"/>
         </scene>

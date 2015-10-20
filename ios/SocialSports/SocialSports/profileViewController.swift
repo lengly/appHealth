@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftHTTP
+import SwiftyJSON
 
 class profileViewController: UIViewController, UITextFieldDelegate,
     UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -58,6 +60,100 @@ class profileViewController: UIViewController, UITextFieldDelegate,
         
     }
     
+//    @IBAction func birthdaySelect(sender: UITextField) {
+//        let controller = UIAlertController(title: "", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+//        let containerViewWidth = 250
+//        let containerViewHeight = 300
+//        let containerFrame = CGRectMake(10, 70, CGFloat(containerViewWidth), CGFloat(containerViewHeight));
+//        
+//        let datePicker = UIDatePicker(frame: containerFrame)
+//        let cancelAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+//        
+//        controller.view.addSubview(datePicker)
+//        
+//        controller.addAction(cancelAction)
+//        
+//        
+//    }
+    
+    
+    @IBAction func saveProfile(sender: UIBarButtonItem) {
+        let tokenObj = self.loadToken()
+        let token = tokenObj!.token;
+        do {
+            let opt = try HTTP.GET("http://isports-1093.appspot.com/upload/get_url", headers: ["Authorization": token])
+            opt.start { response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                    return //also notify app of failure as needed
+                }
+                
+                let json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
+                print(json)
+                
+                // MARK: TODO
+                if json["rc"] == 200 {
+                    //获取url成功
+                    let imageUrl: String = json["content"].stringValue
+                    print(imageUrl)
+//                    var params = ["pic_file": self.headImageView.image!]
+
+                    let fileUrl = NSURL(fileURLWithPath: "/Users/dalton/Desktop/testfile")
+                    do {
+                        let opt = try HTTP.POST("https://domain.com/new", parameters: ["aParam": "aValue", "file": Upload(fileUrl: fileUrl)])
+                        opt.start { response in
+                            //do things...
+                        }
+                    } catch let error {
+                        print("got an error creating the request: \(error)")
+                    }
+                    
+                }
+                else {
+                    //获取url失败
+                    //                    print(json["content"].stringValue)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+
+        
+//        let params = ["nick_name": nicknameTextField.text!,
+//                    "birthday": birthdayTextField.text!,
+//                    "gender": genderTextField.text!,
+//                    "password": passwordTextField.text!,
+//                    "head_pic": headImageView.image!]
+//        do {
+//            let opt = try HTTP.POST("http://isports-1093.appspot.com/profile/edit", parameters: params, headers: ["Authorization": token])
+//            opt.start { response in
+//                if let err = response.error {
+//                    print("error: \(err.localizedDescription)")
+//                    return //also notify app of failure as needed
+//                }
+//                print("opt finished: \(response.description)")
+//                //                print("data is: \(response.data)") //access the response of the data with response.data
+//                let json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
+//                print(json)
+//                
+//                // MARK: TODO
+//                // 这里检测成功或者失败应该给用户一个提示
+//                if json["rc"] == 200 {
+//                    //注册成功
+////                    self.dismissViewControllerAnimated(true, completion: nil)
+//                }
+//                else {
+//                    //注册失败
+////                    print(json["content"].stringValue)
+//                }
+//            }
+//        } catch let error {
+//            print("got an error creating the request: \(error)")
+//        }
+
+        
+    }
+    
     // MARK: UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
@@ -97,5 +193,8 @@ class profileViewController: UIViewController, UITextFieldDelegate,
         // Pass the selected object to the new view controller.
     }
     */
+    func loadToken() -> Token? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Token.ArchiveURL.path!) as? Token
+    }
 
 }
