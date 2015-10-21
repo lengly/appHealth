@@ -28,8 +28,10 @@ def get_my_moment(user_id, time_stamp):
 @mobile_request
 @require_login
 def get_all_moment(user_id, time_stamp):
+    user_id = int(user_id)
     time_stamp = datetime.strptime(time_stamp, constant.DATE_TIME_FORMAT)
-    relation = Relation.get_by_id(user_id)
+    relation_key = ndb.Key(Relation, user_id)
+    relation = Relation(key=relation_key)
     friends_key = relation.follows_key
     moment_list = []
     for friend_key in friends_key:
