@@ -1,4 +1,6 @@
 .idea
 *.pyc
-index.yaml
+*.DS_Store
+*.yaml
+
 
