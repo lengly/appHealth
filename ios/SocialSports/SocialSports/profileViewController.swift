@@ -159,11 +159,14 @@ class profileViewController: UIViewController, UITextFieldDelegate,
         // Dismiss the picker if the user canceled.
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
+    var imageUrl: NSURL?
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         // The info dictionary contains multiple representations of the image, and this uses the original.
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
+        self.imageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+        print(imageUrl)
+
         // Set photoImageView to display the selected image.
         headImageView.image = selectedImage
         
@@ -197,4 +200,11 @@ class profileViewController: UIViewController, UITextFieldDelegate,
         return NSKeyedUnarchiver.unarchiveObjectWithFile(Token.ArchiveURL.path!) as? Token
     }
 
+    @IBAction func TestAction(sender: UIButton, forEvent event: UIEvent) {
+//        let imageManager = ImageManager.instance
+//        imageManager.uploadImage(self.imageUrl!)
+        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("MapViewController") as! UIKit.UIViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
 }

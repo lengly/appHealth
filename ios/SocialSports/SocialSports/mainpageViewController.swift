@@ -71,10 +71,7 @@ class mainpageViewController: UIViewController {
         do{
             //TODO:NTC时间
             
-            let date = NSDate()
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let dateString = formatter.stringFromDate(date)
+            let dateString = "2014-01-01 00:00:00"
             print(dateString)
             
             let optmoments = try HTTP.POST("http://isports-1093.appspot.com/moment/my", parameters:["time_stamp":dateString],headers: ["Authorization": token])

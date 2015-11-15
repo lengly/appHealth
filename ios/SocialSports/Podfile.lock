@@ -1,8 +1,10 @@
 PODS:
+  - GoogleMaps (1.10.5)
   - SwiftHTTP (1.0.1)
   - SwiftyJSON (2.3.0)
 
 DEPENDENCIES:
+  - GoogleMaps
   - SwiftHTTP (~> 1.0.0)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
@@ -16,6 +18,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
+  GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
   SwiftHTTP: 1c8bb7cf3969c750721392fac1e40a6415e8526e
   SwiftyJSON: cacfe0373d584585716bd1d43202c24cc66afd65
 

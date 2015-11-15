@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DA4A193D6DFA3720952672400BB6559C"
-               BuildableName = "SwiftHTTP.framework"
-               BlueprintName = "SwiftHTTP"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "33D7175E1BCD6EAE00B85D2A"
+               BuildableName = "SocialSports.app"
+               BlueprintName = "SocialSports"
+               ReferencedContainer = "container:SocialSports.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "33D717721BCD6EAE00B85D2A"
+               BuildableName = "SocialSportsTests.xctest"
+               BlueprintName = "SocialSportsTests"
+               ReferencedContainer = "container:SocialSports.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "33D7175E1BCD6EAE00B85D2A"
+            BuildableName = "SocialSports.app"
+            BlueprintName = "SocialSports"
+            ReferencedContainer = "container:SocialSports.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +61,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DA4A193D6DFA3720952672400BB6559C"
-            BuildableName = "SwiftHTTP.framework"
-            BlueprintName = "SwiftHTTP"
-            ReferencedContainer = "container:Pods.xcodeproj">
+            BlueprintIdentifier = "33D7175E1BCD6EAE00B85D2A"
+            BuildableName = "SocialSports.app"
+            BlueprintName = "SocialSports"
+            ReferencedContainer = "container:SocialSports.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,15 +80,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DA4A193D6DFA3720952672400BB6559C"
-            BuildableName = "SwiftHTTP.framework"
-            BlueprintName = "SwiftHTTP"
-            ReferencedContainer = "container:Pods.xcodeproj">
+            BlueprintIdentifier = "33D7175E1BCD6EAE00B85D2A"
+            BuildableName = "SocialSports.app"
+            BlueprintName = "SocialSports"
+            ReferencedContainer = "container:SocialSports.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
