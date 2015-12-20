@@ -147,7 +147,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="530" placeholderIntrinsicHeight="280" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="acg-Kk-VAv">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="530" placeholderIntrinsicHeight="280" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="acg-Kk-VAv">
                                 <rect key="frame" x="35" y="72" width="530" height="280"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hSY-ef-WTK">
@@ -280,6 +280,7 @@
                             <constraint firstItem="acg-Kk-VAv" firstAttribute="leading" secondItem="XFf-XP-wNd" secondAttribute="leadingMargin" constant="15" id="loN-pC-4jA"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Gy4-5j-FhI" userLabel="我的"/>
                     <navigationItem key="navigationItem" title="个人设置" id="Iwk-AU-EiV">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Vst-xf-1DS">
                             <connections>
@@ -302,7 +303,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4102" y="1106"/>
+            <point key="canvasLocation" x="3188" y="938"/>
         </scene>
         <!--首页-->
         <scene sceneID="n1F-Iy-mIq">
@@ -369,7 +370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Znc-EP-bEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3036" y="266"/>
+            <point key="canvasLocation" x="3188" y="270"/>
         </scene>
         <!--关注列表-->
         <scene sceneID="WV1-Pd-Ua5">
@@ -420,7 +421,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="QhG-Ai-zdf" kind="relationship" relationship="viewControllers" id="c8x-kE-30j"/>
-                        <segue destination="C93-5e-XIp" kind="relationship" relationship="viewControllers" id="wtG-49-J2C"/>
+                        <segue destination="QNW-jp-tFa" kind="relationship" relationship="viewControllers" id="qF4-rz-tmg"/>
+                        <segue destination="zjT-2A-eQl" kind="relationship" relationship="viewControllers" id="r2V-c2-WdV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UAu-fM-MUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -517,10 +519,10 @@
             </objects>
             <point key="canvasLocation" x="858" y="326"/>
         </scene>
-        <!--登   陆-->
+        <!--登录-->
         <scene sceneID="5tL-UO-wE8">
             <objects>
-                <viewController id="b8j-Q2-Q94" customClass="loginViewController" customModule="SocialSports" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="b8j-Q2-Q94" userLabel="登录" customClass="loginViewController" customModule="SocialSports" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MYZ-9R-ine"/>
                         <viewControllerLayoutGuide type="bottom" id="ZV2-uU-lE1"/>
@@ -574,7 +576,7 @@
                             <constraint firstItem="jxg-mi-Rip" firstAttribute="top" secondItem="MYZ-9R-ine" secondAttribute="bottom" constant="10" id="fG2-C1-zr4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="登   陆" id="ky8-K3-NMg">
+                    <navigationItem key="navigationItem" title="登   录" id="ky8-K3-NMg" userLabel="登录">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="e0W-hh-xja">
                             <connections>
                                 <action selector="cancel:" destination="b8j-Q2-Q94" id="uad-sl-Lne"/>
@@ -608,24 +610,56 @@
             </objects>
             <point key="canvasLocation" x="853" y="1061"/>
         </scene>
-        <!--我的-->
-        <scene sceneID="oyY-Pp-f1H">
+        <!--运动圈-->
+        <scene sceneID="YJg-rE-vdF">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C93-5e-XIp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" id="YLl-WX-PRg"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uhn-r5-eRL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="zjT-2A-eQl" kind="relationship" relationship="rootViewController" id="mGD-G8-Jxv"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UXM-Hm-eNV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController title="运动圈" id="QNW-jp-tFa" customClass="MomentTableViewController" customModule="SocialSports" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="DJw-hU-d8j">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MomentTableViewCell" id="fU2-r9-1UA" customClass="MomentTableViewCell" customModule="SocialSports" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fU2-r9-1UA" id="UeP-i4-oSt">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gyp-mx-Prz">
+                                            <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4o-zU-ALq">
+                                            <rect key="frame" x="66" y="9" width="526" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uUi-lF-zwk">
+                                            <rect key="frame" x="66" y="37" width="526" height="54.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="userPhotoImageView" destination="Gyp-mx-Prz" id="Btd-Zr-2Ob"/>
+                                    <outlet property="userWordsTextView" destination="uUi-lF-zwk" id="geu-VA-azB"/>
+                                    <outlet property="usernameLable" destination="i4o-zU-ALq" id="vhN-M0-bFU"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QNW-jp-tFa" id="WhR-u9-FAn"/>
+                            <outlet property="delegate" destination="QNW-jp-tFa" id="hd0-Iq-OMU"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="lmu-k2-rvY" userLabel="运动圈"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pDo-pC-APc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3168" y="1094"/>
+            <point key="canvasLocation" x="3188" y="1753"/>
         </scene>
         <!--发布状态-->
         <scene sceneID="0ct-Oa-NGT">
