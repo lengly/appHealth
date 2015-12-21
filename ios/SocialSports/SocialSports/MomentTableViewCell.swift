@@ -9,7 +9,7 @@
 import UIKit
 
 class MomentTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var userPhotoImageView: UIImageView!
     
     @IBOutlet weak var usernameLable: UILabel!
@@ -20,11 +20,11 @@ class MomentTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }
