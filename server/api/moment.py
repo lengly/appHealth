@@ -38,6 +38,9 @@ def get_all_moment(user_id, time_stamp):
         qry = Moment.query(ndb.AND(getattr(Moment, 'user_id') == friend_key.id, getattr(Moment, 'time_modified') >= time_stamp))
         moments = qry.fetch()
         moment_list.append(map(moment_transform, moments))
+    qry = Moment.query(ndb.AND(getattr(Moment, 'user_id') == user_id, getattr(Moment, 'time_modified') >= time_stamp))
+    moments = qry.fetch()
+    moment_list.append(map(moment_transform, moments))
     return {'moments': moment_list}
 
 

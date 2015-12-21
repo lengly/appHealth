@@ -88,37 +88,59 @@ def edit_profile(user_id, nick_name=None, birthday=None, gender=None, head_pic=N
     }
 
 
-@user_api.route('/friend/')
+@user_api.route('/friend/follows')
 @mobile_request
 @require_login
 def get_friends(user_id):
-    pass
+    user_id = int(user_id)
+    qry = Relation.query(getattr(Relation, 'user_id') == user_id)
+    relation = qry.fetch()[0]
+    return {
+        'user_id': relation.user_id,
+        'follows': list({v.id() for v in relation.follows_key}) if relation.follows_key else None,
+    }
+
 
 
 @user_api.route('/friend/followers')
 @mobile_request
 @require_login
 def get_followers(user_id):
-    pass
+    user_id = int(user_id)
+    qry = Relation.query(getattr(Relation, 'user_id') == user_id)
+    relation = qry.fetch()[0]
+    return {
+        'user_id': relation.user_id,
+        'followers': list({v.id() for v in relation.followers_key}) if relation.followers_key else None
+    }
 
 
 @user_api.route('/friend/follow', methods=['POST'])
 @mobile_request
 @require_login
 def follow(user_id, friend_id):
+    user_id = int(user_id)
     friend_id = int(friend_id)
     friend = User.get_by_id(friend_id)
     if not friend:
         raise UserNotFoundException(friend_id)
 
-    relation_key = ndb.Key(Relation, user_id)
-    relation = Relation(key=relation_key, user_id=user_id)
+    qry = Relation.query(getattr(Relation, 'user_id') == user_id)
+    if len(qry.fetch()) > 0:
+        relation = qry.fetch()[0]
+    else:
+        relation_key = ndb.Key(Relation, user_id)
+        relation = Relation(key=relation_key, user_id=user_id)
     if friend.key not in relation.follows_key:
         relation.follows_key.append(friend.key)
     relation.put()
 
-    friend_relation_key = ndb.Key(Relation, friend_id)
-    friend_relation = Relation(key=friend_relation_key, user_id=friend_id)
+    qry = Relation.query(getattr(Relation, 'user_id') == friend_id)
+    if len(qry.fetch()) > 0:
+        friend_relation = qry.fetch()[0]
+    else:
+        friend_key = ndb.Key(Relation, friend_id)
+        friend_relation = Relation(key=friend_key, user_id=friend_id)
     if ndb.Key(User, user_id) not in friend_relation.followers_key:
         friend_relation.followers_key.append(ndb.Key(User, user_id))
     friend_relation.put()
@@ -138,14 +160,22 @@ def unfollow(user_id, friend_id):
     if not friend:
         raise UserNotFoundException(friend_id)
 
-    relation_key = ndb.Key(Relation, user_id)
-    relation = Relation(key=relation_key, user_id=user_id)
+    qry = Relation.query(getattr(Relation, 'user_id') == user_id)
+    if len(qry.fetch()) > 0:
+        relation = qry.fetch()[0]
+    else:
+        relation_key = ndb.Key(Relation, user_id)
+        relation = Relation(key=relation_key, user_id=user_id)
     if friend.key in relation.follows_key:
         relation.follows_key.remove(friend.key)
     relation.put()
 
-    friend_relation_key = ndb.Key(Relation, friend_id)
-    friend_relation = Relation(key=friend_relation_key, user_id=friend_id)
+    qry = Relation.query(getattr(Relation, 'user_id') == friend_id)
+    if len(qry.fetch()) > 0:
+        friend_relation = qry.fetch()[0]
+    else:
+        friend_key = ndb.Key(Relation, friend_id)
+        friend_relation = Relation(key=friend_key, user_id=friend_id)
     if ndb.Key(User, user_id) in friend_relation.followers_key:
         friend_relation.followers_key.remove(ndb.Key(User, user_id))
     friend_relation.put()
