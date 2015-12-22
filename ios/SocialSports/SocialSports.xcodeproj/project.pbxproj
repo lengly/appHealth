@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2CB7025F1BEF002D006A84C0 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7025E1BEF002D006A84C0 /* Map.storyboard */; };
+		33A7AD9A1C2997DE00546046 /* followerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A7AD991C2997DE00546046 /* followerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		33C5244E1BCEB41700AD5DE7 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C5244D1BCEB41700AD5DE7 /* loginViewController.swift */; };
 		33C524501BCEB45400AD5DE7 /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C5244F1BCEB45400AD5DE7 /* registerViewController.swift */; };
 		33D717631BCD6EAE00B85D2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D717621BCD6EAE00B85D2A /* AppDelegate.swift */; };
@@ -23,6 +24,8 @@
 		AAABCAD7A3C780E57619C79D /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAABC82014B2A3315C681554 /* ImageManager.swift */; };
 		FB4543EE1BD26619007BCF33 /* mainpageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4543ED1BD26619007BCF33 /* mainpageViewController.swift */; };
 		FB4543F41BD28802007BCF33 /* publishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4543F31BD28802007BCF33 /* publishViewController.swift */; };
+		FC9F4DCE1C28586700498A52 /* MomentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F4DCD1C28586700498A52 /* MomentTableViewCell.swift */; };
+		FC9F4DD01C2858A800498A52 /* MomentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F4DCF1C2858A800498A52 /* MomentTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		2CB7025E1BEF002D006A84C0 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		33A7AD991C2997DE00546046 /* followerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = followerViewController.swift; sourceTree = "<group>"; };
 		33C5244D1BCEB41700AD5DE7 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		33C5244F1BCEB45400AD5DE7 /* registerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
 		33D7175F1BCD6EAE00B85D2A /* SocialSports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialSports.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +62,8 @@
 		F57BD6E38DF21413C7EA5AAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FB4543ED1BD26619007BCF33 /* mainpageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainpageViewController.swift; sourceTree = "<group>"; };
 		FB4543F31BD28802007BCF33 /* publishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = publishViewController.swift; sourceTree = "<group>"; };
+		FC9F4DCD1C28586700498A52 /* MomentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentTableViewCell.swift; sourceTree = "<group>"; };
+		FC9F4DCF1C2858A800498A52 /* MomentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,7 @@
 				33D717621BCD6EAE00B85D2A /* AppDelegate.swift */,
 				33D717641BCD6EAE00B85D2A /* ViewController.swift */,
 				33D717661BCD6EAE00B85D2A /* Main.storyboard */,
+				FC9F4DCD1C28586700498A52 /* MomentTableViewCell.swift */,
 				FB4543ED1BD26619007BCF33 /* mainpageViewController.swift */,
 				33DFE8A71BD12593006F6C22 /* profileViewController.swift */,
 				33D717691BCD6EAE00B85D2A /* Assets.xcassets */,
@@ -117,6 +124,8 @@
 				AAABC82014B2A3315C681554 /* ImageManager.swift */,
 				2CB7025E1BEF002D006A84C0 /* Map.storyboard */,
 				AAABCBE86BBA85AB3A6C640A /* MapViewController.swift */,
+				FC9F4DCF1C2858A800498A52 /* MomentTableViewController.swift */,
+				33A7AD991C2997DE00546046 /* followerViewController.swift */,
 			);
 			path = SocialSports;
 			sourceTree = "<group>";
@@ -304,11 +313,14 @@
 				FB4543EE1BD26619007BCF33 /* mainpageViewController.swift in Sources */,
 				33C5244E1BCEB41700AD5DE7 /* loginViewController.swift in Sources */,
 				FB4543F41BD28802007BCF33 /* publishViewController.swift in Sources */,
+				FC9F4DD01C2858A800498A52 /* MomentTableViewController.swift in Sources */,
 				33DFE8AE1BD146CF006F6C22 /* Token.swift in Sources */,
 				33DFE8A81BD12593006F6C22 /* profileViewController.swift in Sources */,
 				33C524501BCEB45400AD5DE7 /* registerViewController.swift in Sources */,
 				AAABCAD7A3C780E57619C79D /* ImageManager.swift in Sources */,
+				33A7AD9A1C2997DE00546046 /* followerViewController.swift in Sources */,
 				AAABC79A8236BAE1D71D1400 /* MapViewController.swift in Sources */,
+				FC9F4DCE1C28586700498A52 /* MomentTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

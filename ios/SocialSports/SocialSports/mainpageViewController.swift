@@ -25,6 +25,11 @@ class mainpageViewController: UIViewController {
     }
     
 
+    @IBAction func RunMap(sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("NavMapViewController") as! UIKit.UIViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
     //测试user_id 5654313976201216
     /*
     // MARK: - Navigation
@@ -43,31 +48,32 @@ class mainpageViewController: UIViewController {
         let tokenObj = self.loadMeals()
         //print(token!.token)
         let token = tokenObj!.token;
-        do{
-            let opt = try HTTP.GET("http://isports-1093.appspot.com/profile", headers: ["Authorization": token])
-            opt.start { response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                    return //also notify app of failure as needed
-                }
-                //响应的内容
-                let json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
-                //print((json))
-                //print(json["content"])
-                let content = json["content"]
-                //头像
-                //print(self.nickname.text)
-                //let head_pic = content["head_pic"]
-                let nick_name = content["nick_name"].string
-                self.nickname.text = nick_name
-                //TODO:头像显示
-                //print(self.nickname.text)
-                
-            }
-        }catch let error{
-             print("couldn't get user profile: \(error)")
-        }
-        
+//        do{
+//            let opt = try HTTP.GET("http://isports-1093.appspot.com/profile", headers: ["Authorization": token])
+//            opt.start { response in
+//                if let err = response.error {
+//                    print("error: \(err.localizedDescription)")
+//                    return //also notify app of failure as needed
+//                }
+//                //响应的内容
+//                let json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
+//                //print((json))
+//                //print(json["content"])
+//                let content = json["content"]
+//                //头像
+//                //print(self.nickname.text)
+//                //let head_pic = content["head_pic"]
+//                let nick_name = content["nick_name"].string
+//                self.nickname.text = nick_name
+//                //TODO:头像显示
+//                //print(self.nickname.text)
+//                
+//            }
+//        }catch let error{
+//             print("couldn't get user profile: \(error)")
+//        }
+        let nick_name = "Test"
+        self.nickname.text = nick_name
         do{
             //TODO:NTC时间
             

@@ -13,13 +13,13 @@ import SwiftyJSON
 class MomentTableViewController: UITableViewController {
     
     class MomentVO {
-        var userPhoto: String = ""
+        var userPhoto: UIImage?
         
         var username: String = ""
         
         var userWords: String = ""
         
-        init(userPhoto: String, username: String, userWords: String) {
+        init(userPhoto: UIImage, username: String, userWords: String) {
             self.userPhoto = userPhoto
             self.username = username
             self.userWords = userWords
@@ -45,49 +45,69 @@ class MomentTableViewController: UITableViewController {
                 }
                 //响应的内容
                 let json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
-                let momentArray = json["content"]["moments"][0].array
-                for moment in momentArray! {
-                    let username = moment["user_id"].stringValue
-                    let userPhoto = moment["pic"].stringValue
-                    let userWords = moment["text"].stringValue
-                    self.moments.append(MomentVO(userPhoto: userPhoto, username: username, userWords: userWords))
+                let momentArray = json["content"]["moments"].array
+                print(momentArray)
+                if (momentArray != nil) {
+                    for moment in momentArray! {
+                        let userid = moment["user_id"].stringValue
+                        var username: String
+                        var userPhoto: UIImage
+                        
+                        if userid == "5659313586569216" {
+                            username = "Test"
+                            userPhoto = UIImage(named: "dada")!
+                        } else if userid == "5707702298738688" {
+                            username = "Alice"
+                            userPhoto = UIImage(named: "bing")!
+                        } else {
+                            username = "Bob"
+                            userPhoto = UIImage(named: "Image")!
+                        }
+                        let userWords = moment["text"].stringValue
+                        self.moments.append(MomentVO(userPhoto: userPhoto, username: username, userWords: userWords))
+                    }
                 }
+                print(momentArray)
                 
             }
             opt.waitUntilFinished()
         }catch let error{
             print("couldn't get comments infomation: \(error)")
         }
-
+        
     }
     
     override func viewDidLoad() {
+        print("111111111111111111111")
         loadMomentData()
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print(moments.count)
+        print("=========")
+        usleep(1000)
         return moments.count
     }
-
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "MomentTableViewCell"
@@ -95,54 +115,56 @@ class MomentTableViewController: UITableViewController {
         let row = indexPath.row
         cell.usernameLable.text = moments[row].username
         cell.userWordsTextView.text = moments[row].userWords
-        // TODO set photo image
+        cell.userPhotoImageView.image = moments[row].userPhoto
+        print(indexPath.row)
+        print(moments[row])
         return cell
     }
     
-
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    // Return false if you do not want the specified item to be editable.
+    return true
     }
     */
-
+    
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    if editingStyle == .Delete {
+    // Delete the row from the data source
+    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    } else if editingStyle == .Insert {
+    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
     }
     */
-
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
     }
     */
-
+    
     /*
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    // Return false if you do not want the item to be re-orderable.
+    return true
     }
     */
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

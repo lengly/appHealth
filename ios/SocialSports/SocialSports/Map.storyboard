@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--运动记录-->
         <scene sceneID="hm4-Wa-ijU">
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="OzQ-wK-N0u" customClass="MapViewController" customModule="SocialSports" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,18 +21,21 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Running Time: 0s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEm-nG-a3x">
                                         <rect key="frame" x="0.0" y="0.0" width="177" height="21"/>
+                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Total Run Distance: 0m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkL-qE-8yi">
                                         <rect key="frame" x="0.0" y="21" width="177" height="21"/>
+                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guY-VU-p7N">
                                         <rect key="frame" x="0.0" y="41" width="177" height="38"/>
+                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <state key="normal" title="Start"/>
                                         <connections>
@@ -40,17 +43,31 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <animations/>
                                 <constraints>
                                     <constraint firstItem="dkL-qE-8yi" firstAttribute="centerX" secondItem="8VC-0U-oEq" secondAttribute="centerX" id="dtO-vm-NL5"/>
                                     <constraint firstItem="hEm-nG-a3x" firstAttribute="centerX" secondItem="8VC-0U-oEq" secondAttribute="centerX" id="ocy-68-E40"/>
                                 </constraints>
                             </stackView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8VC-0U-oEq" firstAttribute="centerX" secondItem="dI5-Lg-RKI" secondAttribute="centerX" id="ant-KR-QhX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="运动记录" id="WEB-F2-wfY">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="3CS-qU-NL9">
+                            <connections>
+                                <action selector="back:" destination="OzQ-wK-N0u" id="1fY-Dz-uGr"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="1hz-wg-U0i">
+                            <connections>
+                                <action selector="back:" destination="OzQ-wK-N0u" id="8An-7Y-Td1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="actionButton" destination="guY-VU-p7N" id="qoh-ST-VyO"/>
                         <outlet property="distanceLabel" destination="dkL-qE-8yi" id="Byo-DY-eDq"/>
@@ -58,6 +75,25 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hdl-CM-iNo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="104"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cuS-Ip-c7T">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ekM-YU-A0v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="NavMapViewController" automaticallyAdjustsScrollViewInsets="NO" id="iiP-eP-90P" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jgX-7C-73Z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OzQ-wK-N0u" kind="relationship" relationship="rootViewController" id="FBo-O7-5kT"/>
+                    </connections>
+                </navigationController>
             </objects>
             <point key="canvasLocation" x="392" y="116"/>
         </scene>

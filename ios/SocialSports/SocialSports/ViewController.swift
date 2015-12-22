@@ -20,11 +20,5 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onTestAction(sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Map", bundle: nil)
-        let viewController = storyboard.instantiateViewControllerWithIdentifier("MapViewController") as! UIKit.UIViewController
-        self.presentViewController(viewController, animated: true, completion: nil)
-
-    }
 }
 
