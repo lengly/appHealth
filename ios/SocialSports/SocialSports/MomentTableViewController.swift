@@ -13,13 +13,13 @@ import SwiftyJSON
 class MomentTableViewController: UITableViewController {
     
     class MomentVO {
-        var userPhoto: String = ""
+        var userPhoto: UIImage?
         
         var username: String = ""
         
         var userWords: String = ""
         
-        init(userPhoto: String, username: String, userWords: String) {
+        init(userPhoto: UIImage, username: String, userWords: String) {
             self.userPhoto = userPhoto
             self.username = username
             self.userWords = userWords
@@ -45,15 +45,29 @@ class MomentTableViewController: UITableViewController {
                 }
                 //响应的内容
                 let json = JSON(data:response.text!.dataUsingEncoding(NSUTF8StringEncoding)!)
-                let momentArray = json["content"]["moments"][0].array
+                let momentArray = json["content"]["moments"].array
+                print(momentArray)
                 if (momentArray != nil) {
                     for moment in momentArray! {
-                        let username = moment["user_id"].stringValue
-                        let userPhoto = moment["pic"].stringValue
+                        let userid = moment["user_id"].stringValue
+                        var username: String
+                        var userPhoto: UIImage
+                        
+                        if userid == "5659313586569216" {
+                            username = "Test"
+                            userPhoto = UIImage(named: "dada")!
+                        } else if userid == "5707702298738688" {
+                            username = "Alice"
+                            userPhoto = UIImage(named: "bing")!
+                        } else {
+                            username = "Bob"
+                            userPhoto = UIImage(named: "Image")!
+                        }
                         let userWords = moment["text"].stringValue
                         self.moments.append(MomentVO(userPhoto: userPhoto, username: username, userWords: userWords))
                     }
                 }
+                print(momentArray)
                 
             }
             opt.waitUntilFinished()
@@ -64,6 +78,7 @@ class MomentTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        print("111111111111111111111")
         loadMomentData()
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -87,6 +102,9 @@ class MomentTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print(moments.count)
+        print("=========")
+        usleep(1000)
         return moments.count
     }
     
@@ -97,7 +115,9 @@ class MomentTableViewController: UITableViewController {
         let row = indexPath.row
         cell.usernameLable.text = moments[row].username
         cell.userWordsTextView.text = moments[row].userWords
-        // TODO set photo image
+        cell.userPhotoImageView.image = moments[row].userPhoto
+        print(indexPath.row)
+        print(moments[row])
         return cell
     }
     
