@@ -30,17 +30,20 @@ def get_my_moment(user_id, time_stamp):
 def get_all_moment(user_id, time_stamp):
     user_id = int(user_id)
     time_stamp = datetime.strptime(time_stamp, constant.DATE_TIME_FORMAT)
-    relation_key = ndb.Key(Relation, user_id)
-    relation = Relation(key=relation_key)
-    friends_key = relation.follows_key
+    qry = Relation.query(getattr(Relation, 'user_id') == user_id)
+    if len(qry.fetch()) > 0:
+        relation = qry.fetch()[0]
+        friends_key = relation.follows_key
+    else:
+        friends_key = []
     moment_list = []
     for friend_key in friends_key:
-        qry = Moment.query(ndb.AND(getattr(Moment, 'user_id') == friend_key.id, getattr(Moment, 'time_modified') >= time_stamp))
+        qry = Moment.query(ndb.AND(getattr(Moment, 'user_id') == friend_key.integer_id(), getattr(Moment, 'time_modified') >= time_stamp))
         moments = qry.fetch()
-        moment_list.append(map(moment_transform, moments))
+        moment_list.extend(map(moment_transform, moments))
     qry = Moment.query(ndb.AND(getattr(Moment, 'user_id') == user_id, getattr(Moment, 'time_modified') >= time_stamp))
     moments = qry.fetch()
-    moment_list.append(map(moment_transform, moments))
+    moment_list.extend(map(moment_transform, moments))
     return {'moments': moment_list}
 
 
